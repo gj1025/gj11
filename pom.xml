@@ -92,6 +92,12 @@
             <artifactId>pagehelper</artifactId>
             <version>4.1.6</version>
         </dependency>
+        <!-- aop依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>2.4.4</version>
+        </dependency>
 
 
     </dependencies>
