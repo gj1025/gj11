@@ -1,0 +1,67 @@
+# 端口
+server:
+  port: 8001
+
+#mybatis配置文件
+mybatis:
+  # mybatis配置文件所在路径
+  config-location: classpath:mybatis.cfg.xml
+  type-aliases-package: com.boot.mybatis.entity
+  # mapper映射文件
+  mapper-locations: classpath:mapper/*.xml
+
+spring:
+  application:
+    name:${project.artifactId}
+  profiles:
+    active: pro
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/data_one?useUnicode=true&characterEncoding=UTF8&zeroDateTimeBehavior=convertToNull&useSSL=false
+      username: root
+      password: 123456
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      max-evictable-idle-time-millis: 60000
+      validation-query: SELECT 1 FROM DUAL
+      # validation-query-timeout: 5000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      #filters: #配置多个英文逗号分隔(统计，sql注入，log4j过滤)
+      filters: stat,wall
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+
+
+
+
+  # redis 配置
+  redis:
+    host: 127.0.0.1
+    password: 1234
+    port: 6379
+    #超时连接
+    timeout: 1000ms
+    jedis:
+      pool:
+        #最大连接数据库连接数,设 0 为没有限制
+        max-active: 8
+        #最大等待连接中的数量,设 0 为没有限制
+        max-idle: 8
+        #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
+        max-wait: -1ms
+        #最小等待连接中的数量,设 0 为没有限制
+        min-idle: 0
+
+
