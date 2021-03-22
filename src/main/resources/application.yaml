@@ -15,6 +15,14 @@ spring:
     name:${project.artifactId}
   profiles:
     active: pro
+  servlet:
+    multipart:
+      #启用
+      enabled: true
+      #上传文件单个限制
+      max-file-size: 5MB
+      #总限制
+      max-request-size: 6MB
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -44,8 +52,6 @@ spring:
         url-pattern: /druid/*
 
 
-
-
   # redis 配置
   redis:
     host: 127.0.0.1
@@ -64,4 +70,24 @@ spring:
         #最小等待连接中的数量,设 0 为没有限制
         min-idle: 0
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 打开所有的监控点
+        include: "*"
+      # 自定义监控路径 monitor
+      # 默认值：http://localhost:8001/actuator/*
+      # 配置后：http://localhost:8001/monitor/*
+      base-path: /monitor
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      # 通过指定接口关闭 SpringBoot
+      enabled: true
+  # 可以自定义端口
+  # server:
+  #   port: 8089
 
