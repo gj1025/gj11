@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ActuatorController {
     @RequestMapping("/actuator")
-    public String actuator (){
-        return "actuator" ;
+    public String actuator() {
+        return "actuator";
     }
 }

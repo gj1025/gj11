@@ -1,7 +1,6 @@
 package com.jlu.masli.gj11.entity;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "user_info")

@@ -1,0 +1,73 @@
+Configuration:
+  status: info
+
+  Properties:
+    property:
+      - name: log.level.console
+        value: info
+      - name: log.path
+        value: /home/gaogao/work/log
+      - name: project.name
+        value: gaj11
+      - name: log.pattern
+        value: "%highlight{%d{yyyy-MM-dd HH:mm:ss} [%-4p] (%F:%L) - %m%n}{FATAL=Bright white, ERROR=Red, WARN=Yellow, INFO=Green, DEBUG=Cyan, TRACE=Blue}"
+
+  Appenders:
+    Console:  # 输出到控制台
+      name: CONSOLE
+      target: SYSTEM_OUT
+      ThresholdFilter: # 日志级别过滤
+        level: trace
+        onMatch: ACCEPT
+        onMismatch: DENY
+      PatternLayout:
+        pattern: ${log.pattern}
+
+    # 启动日志
+    RollingFile: # 输出到文件
+      - name: ROLLING_FILE
+        fileName: ${log.path}/${project.name}.log
+        filePattern: "${log.path}/history/$${date:yyyy-MM}/${project.name}-%d{yyyy-MM-dd}-%i.log.gz"
+        ignoreExceptions: false
+        PatternLayout:
+          pattern: ${log.pattern}
+        Policies:
+          TimeBasedTriggeringPolicy: # 按天分类
+            modulate: true
+            interval: 1
+        DefaultRolloverStrategy: # 文件最多1000个
+          max: 1000
+    #   - name: LCS_SELF_APPENDER
+    #     fileName: ${log.path}/thrift_appender.log
+    #     filePattern: "${log.path}/thrift_appender%d{yyyy-MM-dd}.log.%i"
+    #     PatternLayout:
+    #       pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+    #     Policies:
+    #       TimeBasedTriggeringPolicy:
+    #         interval: 1
+    #         modulate: true
+    #       SizeBasedTriggeringPolicy:
+    #         size: 10MB
+    # LCSThriftLogger:
+    #   name: LCS
+    #   blockWhenBufferFull: false
+
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        - ref: CONSOLE
+        - ref: ROLLING_FILE
+    # AsyncLogger:
+    #   - name: "com.xiaomi.infra.galaxy.lcs.log.log4j2.LCSThriftLogger"
+    #     level: info
+    #     additivity: false
+    #     AppenderRef:
+    #       ref: LCS
+    #       level: info
+    #   - name: "com.xiaomi.infra.galaxy.lcs.log.log4j2.appender.LCSThriftAppender"
+    #     level: info
+    #     additivity: false
+    #     AppenderRef:
+    #       ref: LCS_SELF_APPENDER
+    #       level: info

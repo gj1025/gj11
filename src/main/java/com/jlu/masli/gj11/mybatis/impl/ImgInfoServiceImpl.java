@@ -15,7 +15,7 @@ import java.util.List;
 public class ImgInfoServiceImpl implements ImgInfoService {
 
     @Resource
-    private ImgInfoMapper imgInfoMapper ;
+    private ImgInfoMapper imgInfoMapper;
 
 
     @Override
@@ -40,15 +40,15 @@ public class ImgInfoServiceImpl implements ImgInfoService {
 
     @Override
     public PageInfo<ImgInfo> queryPage(int page, int pageSize) {
-        PageHelper.startPage(page,pageSize) ;
-        ImgInfoExample example = new ImgInfoExample() ;
+        PageHelper.startPage(page, pageSize);
+        ImgInfoExample example = new ImgInfoExample();
         // 查询条件
         example.createCriteria().andBEnableEqualTo("1").andShowStateEqualTo(1);
         // 排序条件
         example.setOrderByClause("create_date DESC,img_id ASC");
-        List<ImgInfo> imgInfoList = imgInfoMapper.selectByExample(example) ;
-        PageInfo<ImgInfo> pageInfo = new PageInfo<>(imgInfoList) ;
-        return pageInfo ;
+        List<ImgInfo> imgInfoList = imgInfoMapper.selectByExample(example);
+        PageInfo<ImgInfo> pageInfo = new PageInfo<>(imgInfoList);
+        return pageInfo;
     }
 
 

@@ -1,10 +1,8 @@
 package com.jlu.masli.gj11.config;
 
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.sql.DataSourceDefinition;
 
 @Component
 public class ParamConfig {

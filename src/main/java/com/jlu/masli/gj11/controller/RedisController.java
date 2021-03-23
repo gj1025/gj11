@@ -12,29 +12,30 @@ import java.util.concurrent.TimeUnit;
 public class RedisController {
 
     @Resource
-    private StringRedisTemplate stringRedisTemplate ;
+    private StringRedisTemplate stringRedisTemplate;
 
     @RequestMapping("/setGet")
-    public String setGet (){
-        stringRedisTemplate.opsForValue().set("cicada","smile");
-        return stringRedisTemplate.opsForValue().get("cicada") ;
+    public String setGet() {
+        stringRedisTemplate.opsForValue().set("cicada", "smile");
+        return stringRedisTemplate.opsForValue().get("cicada");
     }
 
     @Resource
-    private RedisTemplate redisTemplate ;
+    private RedisTemplate redisTemplate;
 
     /**
      * 设置 Key 的有效期 10 秒
      */
     @RequestMapping("/setKeyTime")
-    public String setKeyTime (){
-        redisTemplate.opsForValue().set("timeKey","timeValue",10, TimeUnit.SECONDS);
-        return "success" ;
+    public String setKeyTime() {
+        redisTemplate.opsForValue().set("timeKey", "timeValue", 10, TimeUnit.SECONDS);
+        return "success";
     }
+
     @RequestMapping("/getTimeKey")
-    public String getTimeKey (){
+    public String getTimeKey() {
         // 这里 Key 过期后，返回的是字符串 'null'
-        return String.valueOf(redisTemplate.opsForValue().get("timeKey")) ;
+        return String.valueOf(redisTemplate.opsForValue().get("timeKey"));
     }
 }
 

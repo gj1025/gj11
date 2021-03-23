@@ -12,34 +12,34 @@ public class UserCacheServiceImpl implements UserCacheService {
 
     // 使用自定义的key生成策略
     // 缓存结果key：addUser::KeyGenerator:addUser
-    @CachePut(value = "addUser",keyGenerator="oneKeyGenerator")
+    @CachePut(value = "addUser", keyGenerator = "oneKeyGenerator")
     @Override
     public UserInfoEntity addUser(UserInfoEntity user) {
-        return user ;
+        return user;
     }
 
     // 缓存结果key：updateUser::2
-    @CachePut(value = "updateUser",key = "#result.id")
+    @CachePut(value = "updateUser", key = "#result.id")
     @Override
     public UserInfoEntity updateUser(Integer id) {
-        UserInfoEntity user = new UserInfoEntity() ;
+        UserInfoEntity user = new UserInfoEntity();
         user.setId(id);
         user.setName("smile");
         return user;
     }
 
     // 缓存结果key: selectUser::3
-    @Cacheable(cacheNames = "selectUser",key = "#id")
+    @Cacheable(cacheNames = "selectUser", key = "#id")
     @Override
     public UserInfoEntity selectUser(Integer id) {
-        UserInfoEntity user = new UserInfoEntity() ;
+        UserInfoEntity user = new UserInfoEntity();
         user.setId(id);
         user.setName("cicadaSmile");
         return user;
     }
 
     // 删除指定key: selectUser::3
-    @CacheEvict(value = "selectUser",key = "#id",beforeInvocation = true)
+    @CacheEvict(value = "selectUser", key = "#id", beforeInvocation = true)
     @Override
     public void deleteUser(Integer id) {
 

@@ -21,6 +21,6 @@ public interface ImgInfoService {
     int deleteByPrimaryKey(Integer imgId);
 
     // 分页查询
-    PageInfo<ImgInfo> queryPage (int page, int pageSize) ;
+    PageInfo<ImgInfo> queryPage(int page, int pageSize);
 
 }

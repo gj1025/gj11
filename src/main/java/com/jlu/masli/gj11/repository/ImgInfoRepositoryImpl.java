@@ -19,26 +19,26 @@ public class ImgInfoRepositoryImpl implements ImgInfoRepository {
 
     @Override
     public void saveImg(ImgInfo imgInfo) {
-        mongoTemplate.save(imgInfo) ;
+        mongoTemplate.save(imgInfo);
     }
 
     @Override
     public ImgInfo findByImgTitle(String imgTitle) {
-        Query query=new Query(Criteria.where("imgTitle").is(imgTitle));
-        return mongoTemplate.findOne(query,ImgInfo.class);
+        Query query = new Query(Criteria.where("imgTitle").is(imgTitle));
+        return mongoTemplate.findOne(query, ImgInfo.class);
     }
 
     @Override
     public long updateImgInfo(ImgInfo imgInfo) {
         Query query = new Query(Criteria.where("imgId").is(imgInfo.getImgId()));
-        Update update= new Update().set("imgTitle", imgInfo.getImgTitle()).set("imgUrl", imgInfo.getImgUrl());
-        UpdateResult result = mongoTemplate.updateFirst(query,update,ImgInfo.class);
+        Update update = new Update().set("imgTitle", imgInfo.getImgTitle()).set("imgUrl", imgInfo.getImgUrl());
+        UpdateResult result = mongoTemplate.updateFirst(query, update, ImgInfo.class);
         return result.getMatchedCount();
     }
 
     @Override
     public void deleteById(Integer imgId) {
         Query query = new Query(Criteria.where("imgId").is(imgId));
-        mongoTemplate.remove(query,ImgInfo.class);
+        mongoTemplate.remove(query, ImgInfo.class);
     }
 }

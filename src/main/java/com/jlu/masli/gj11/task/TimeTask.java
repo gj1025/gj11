@@ -13,9 +13,9 @@ import java.util.Date;
  */
 @Component
 public class TimeTask {
-    Logger LOG = LoggerFactory.getLogger(TimeTask.class.getName()) ;
+    Logger LOG = LoggerFactory.getLogger(TimeTask.class.getName());
     private static final SimpleDateFormat format =
-            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
+            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /*
      * @Scheduled(fixedRate = 5000) ：上一次开始执行时间点之后5秒再执行
@@ -28,7 +28,7 @@ public class TimeTask {
      * 每3秒打印一次系统时间
      */
     @Scheduled(fixedDelay = 3000)
-    public void systemDate (){
-        LOG.info("当前时间::::"+format.format(new Date()));
+    public void systemDate() {
+        LOG.info("当前时间::::" + format.format(new Date()));
     }
 }

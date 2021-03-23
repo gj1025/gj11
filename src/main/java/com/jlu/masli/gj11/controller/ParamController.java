@@ -18,8 +18,8 @@ public class ParamController {
 
     @RequestMapping("/getParam")
     public String getParam(@RequestParam String a) {
-        return "[" + paramConfig.getAuthor() + ";" +
-                paramConfig.getTitle() + ";" +
-                paramConfig.getTime() + "]";
+        return "[" + paramConfig.getAuthor() + ";" 
+                + paramConfig.getTitle() + ";" 
+                + paramConfig.getTime() + "]";
     }
 }

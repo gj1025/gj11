@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ExeController {
 
     /**
-     *  {
-     *    "code": 600,
-     *    "msg": "业务异常：ID 不能为空",
-     *    "url": "http://localhost:8003/exception01"
-     *  }
+     * {
+     * "code": 600,
+     * "msg": "业务异常：ID 不能为空",
+     * "url": "http://localhost:8003/exception01"
+     * }
      */
     @RequestMapping("/exception01")
-    public String exception01 () throws ServiceException {
+    public String exception01() throws ServiceException {
         throw new ServiceException("业务异常：ID 不能为空");
     }
 
     @RequestMapping("/exception02")
-    public String exception02 () throws Exception {
+    public String exception02() throws Exception {
         throw new Exception("出现异常，全体卧倒");
     }
 }

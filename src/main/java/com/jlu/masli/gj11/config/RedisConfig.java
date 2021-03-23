@@ -16,13 +16,13 @@ import java.io.Serializable;
  */
 @Configuration
 public class RedisConfig {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RedisConfig.class) ;
+    private static final Logger LOGGER = LoggerFactory.getLogger(RedisConfig.class);
+
     /**
      * 序列化配置
      */
     @Bean
-    public RedisTemplate<String, Serializable> redisTemplate
-    (LettuceConnectionFactory redisConnectionFactory) {
+    public RedisTemplate<String, Serializable> redisTemplate(LettuceConnectionFactory redisConnectionFactory) {
         LOGGER.info("RedisConfig == >> redisTemplate ");
         RedisTemplate<String, Serializable> template = new RedisTemplate<>();
         template.setKeySerializer(new StringRedisSerializer());

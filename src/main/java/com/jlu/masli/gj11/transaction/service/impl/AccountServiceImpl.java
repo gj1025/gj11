@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 public class AccountServiceImpl implements AccountService {
 
     @Resource
-    private JdbcTemplate jdbcTemplate ;
+    private JdbcTemplate jdbcTemplate;
 
     public AccountServiceImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -18,11 +18,12 @@ public class AccountServiceImpl implements AccountService {
 
     public void out(String outer, Integer money) {
         String sql = "update account set money = money - ? where username = ?";
-        jdbcTemplate.update(sql, money,outer);
+        jdbcTemplate.update(sql, money, outer);
     }
+
     public void in(String inner, Integer money) {
         String sql = "update account set money = money + ? where username = ?";
-        jdbcTemplate.update(sql, money,inner);
+        jdbcTemplate.update(sql, money, inner);
     }
 
 }

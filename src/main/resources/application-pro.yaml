@@ -1,5 +1,5 @@
 logging:
-  config:classpath:log4j2-boot-pro.xml
+  config: classpath:log4j2.yml
 user:
   author: "知了一笑"
   title: "SpringBoot 2.0 程序开发"

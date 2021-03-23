@@ -15,15 +15,15 @@ import javax.annotation.Resource;
 public class TradeServiceImpl implements TradeService {
 
     @Resource
-    private AccountService accountService ;
+    private AccountService accountService;
     @Resource
-    private TransactionTemplate transactionTemplate ;
+    private TransactionTemplate transactionTemplate;
 
     @Override
     public void trade1(String outer, String inner, Integer money) {
         accountService.out(outer, money);
         // 抛出异常
-        int i = 1/0;
+        int i = 1 / 0;
         accountService.in(inner, money);
     }
 
@@ -33,18 +33,18 @@ public class TradeServiceImpl implements TradeService {
             public void doInTransactionWithoutResult(TransactionStatus arg0) {
                 accountService.out(outer, money);
                 // 抛出异常
-                int i = 1/0;
+                int i = 1 / 0;
                 accountService.in(inner, money);
             }
         });
     }
 
-    @Transactional(value="transactionManager",propagation= Propagation.REQUIRED)
+    @Transactional(value = "transactionManager", propagation = Propagation.REQUIRED)
     @Override
     public void trade3(String outer, String inner, Integer money) {
         accountService.out(outer, money);
         // 抛出异常
-        int i = 1/0;
+        int i = 1 / 0;
         accountService.in(inner, money);
     }
 }

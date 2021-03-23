@@ -12,29 +12,33 @@ import javax.annotation.Resource;
 public class CacheTestController {
 
     @Resource
-    private UserCacheService userCacheServiceService ;
+    private UserCacheService userCacheServiceService;
+
     // 分别测试：增、改、查、删,四个方法
     @RequestMapping("/add")
     @ResponseBody
-    public void testAdd (){
-        UserInfoEntity user = new UserInfoEntity() ;
+    public void testAdd() {
+        UserInfoEntity user = new UserInfoEntity();
         user.setId(1);
         user.setName("cicada");
-        userCacheServiceService.addUser(user) ;
+        userCacheServiceService.addUser(user);
     }
+
     @RequestMapping("/up")
     @ResponseBody
-    public void testUpdate (){
-        userCacheServiceService.updateUser(2) ;
+    public void testUpdate() {
+        userCacheServiceService.updateUser(2);
     }
+
     @RequestMapping("/sel")
     @ResponseBody
-    public void testSelect (){
-        userCacheServiceService.selectUser(3) ;
+    public void testSelect() {
+        userCacheServiceService.selectUser(3);
     }
+
     @RequestMapping("/del")
     @ResponseBody
-    public void testDelete (){
-        userCacheServiceService.deleteUser(3) ;
+    public void testDelete() {
+        userCacheServiceService.deleteUser(3);
     }
 }
